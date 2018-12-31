@@ -1,0 +1,90 @@
+{% extends "nunjucks/templates/main.njk" %}
+
+    {% block page_title %}Create case{% endblock %}
+
+    {% block content %}
+
+        <div class="container wti-form-wrapper">
+            {% if recordCreated %}
+            <div class="alert alert-success">
+              <span><a href="#" class="alert-link">Case created successfully</a>.</span>
+            </div>
+            {% endif %}
+            {% if errors %}
+                {% for key, value in errors %}
+                    <div class="alert alert-danger">
+                      <span><a href="#{{ key }}" class="alert-link">{{ value.msg }}</a>.</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="wti-small-margin-bottom-wrapper">
+                <h1 class="">Create new case</h1>
+                <p class="lead">All fields are required</p>
+            </div>
+            <form class="" action="/admin/new-case" method="post">
+                <div class="form-group">
+                    <label for="groupName">Group name</label>
+                    {% if errors.groupName %}
+                    <div class="wti-error-message-wrapper">
+                        <span class="wti-error-message">{{ errors.groupName.msg }}</span>
+                    </div>
+                    {% endif %}
+                    <input name="groupName" type="text" class="form-control" id="groupName">
+                </div>
+                <div class="form-group">
+                    <label for="identityName">Identity name</label>
+                    {% if errors.identityName %}
+                    <div class="wti-error-message-wrapper">
+                        <span class="wti-error-message">{{ errors.identityName.msg }}</span>
+                    </div>
+                    {% endif %}
+                    <input name="identityName" type="text" class="form-control" id="identityName">
+                </div>
+                <div class="form-group">
+                    <label for="class">Class</label>
+                    {% if errors.class %}
+                    <div class="wti-error-message-wrapper">
+                        <span class="wti-error-message">{{ errors.class.msg }}</span>
+                    </div>
+                    {% endif %}
+                    <input name="class" type="text" class="form-control" id="class">
+                </div>
+                <div class="form-group">
+                    <label for="placeOfRescue">Place of rescue</label>
+                    {% if errors.placeOfRescue %}
+                    <div class="wti-error-message-wrapper">
+                        <span class="wti-error-message">{{ errors.placeOfRescue.msg }}</span>
+                    </div>
+                    {% endif %}
+                    <input name="placeOfRescue" type="text" class="form-control" id="placeOfRescue">
+                </div>
+                <div class="form-group">
+                    <label for="zoneName">Zone name</label>
+                    {% if errors.zoneName %}
+                    <div class="wti-error-message-wrapper">
+                        <span class="wti-error-message">{{ errors.zoneName.msg }}</span>
+                    </div>
+                    {% endif %}
+                    <select name="zoneName" id="zoneName" class="form-control">
+                        <option selected disabled>Choose...</option>
+                        <option>MVS-CA</option>
+                        <option>MVS-EA</option>
+                        <option>MVS-NB</option>
+                        <option>MVS-WA</option>
+                        <option>MVS-Arun</option>
+                        <option>Other states</option>
+                    </select>
+                </div>
+                <input type="hidden" name="_csrf" value="{{ _csrf }}">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Create case</button>
+                </div>
+            </form>
+
+        </div>
+
+        {% endblock %}
+
+
+
+</html>

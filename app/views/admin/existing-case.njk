@@ -1,0 +1,306 @@
+{% extends "nunjucks/templates/main.njk" %}
+
+    {% block content %}
+
+        <div class="container">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-rescue-details-tab" data-toggle="tab" href="#nav-rescue-details" role="tab" aria-controls="nav-home" aria-selected="true">Rescue details</a>
+                <a class="nav-item nav-link" id="nav-admission-details-tab" data-toggle="tab" href="#nav-admission-details" role="tab" aria-controls="nav-admission-details" aria-selected="false">Admission details</a>
+                <a class="nav-item nav-link" id="nav-animal-facts-tab" data-toggle="tab" href="#nav-animal-facts" role="tab" aria-controls="nav-animal-facts" aria-selected="false">Animal facts</a>
+                <a class="nav-item nav-link" id="nav-initial-examination-tab" data-toggle="tab" href="#nav-initial-examination" role="tab" aria-controls="nav-initial-examination" aria-selected="false">Initial examination</a>
+                <a class="nav-item nav-link" id="nav-outcome-tab" data-toggle="tab" href="#nav-outcome" role="tab" aria-controls="nav-outcome" aria-selected="false">Outcome</a>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-rescue-details" role="tabpanel" aria-labelledby="nav-rescue-details-tab">
+                  <div class="container wti-case-details-wrapper">
+                      <h2>Rescue details</h2>
+                      <form class="" action="/admin/existing-case/{{ record._id }}" method="post">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="caseNumber">Case number</label>
+                            <input type="text" class="form-control" id="caseNumber" name="caseNumber" placeholder="Case number" value="{{ record.caseNumber }}" readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="dateAdded">Date added</label>
+                            <input name="dateAdded" type="text" class="form-control" id="dateAdded" placeholder="Date added" value="{{ record.dateAdded | asDayMonthYearTime }}" readonly>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="placeOfRescue">Place of rescue</label>
+                          <input type="text" class="form-control" id="placeOfRescue" name="placeOfRescue" placeholder="Place of rescue" value="{{ record.placeOfRescue }}">
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="groupName">Group name</label>
+                            <input type="text" class="form-control" id="groupName" name="groupName" placeholder="Group name" value="{{ record.groupName }}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="identityName">Identity name</label>
+                            <input name="identityName" type="text" class="form-control" id="identityName" placeholder="Identity name" value="{{ record.identityName }}">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="class">Class</label>
+                            <input type="text" class="form-control" id="class" name="class" placeholder="Class" value="{{ record.class }}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="zoneName">Zone name</label>
+                            <input name="zoneName" type="text" class="form-control" id="zoneName" placeholder="Zone name" value="{{ record.zoneName }}">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="rescueNotes">Notes</label>
+                          <textarea class="form-control" id="rescueNotes" name="rescueNotes" rows="6">{{ record.rescueNotes }}</textarea>
+                        </div>
+                        <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+                        <input class="btn btn-primary"  type="submit" name="submit" value="Update Case">
+                        <input class="btn btn-danger"  type="submit" name="submit" value="Delete Case">
+                      </form>
+
+                  </div>
+              </div>
+              <div class="tab-pane fade" id="nav-admission-details" role="tabpanel" aria-labelledby="nav-admission-details-tab">
+                  <div class="container wti-case-details-wrapper">
+                      <h2>Admission details</h2>
+
+                      <form class="" action="/admin/existing-case/{{ record._id }}" method="post">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="caseNumber">Case number</label>
+                            <input type="text" class="form-control" id="caseNumber" name="caseNumber" placeholder="Case number" value="{{ record.caseNumber }}" readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="dateAdded">Date added</label>
+                            <input name="dateAdded" type="text" class="form-control" id="dateAdded" placeholder="Date added" value="{{ record.dateAdded | asDayMonthYearTime }}" readonly>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="facility">Facility</label>
+                            <select name="facility" class="form-control" id="facility">
+                                <option disabled selected>Please select</option>
+                              <option {% if record.facility === 'CA-Mobile'%}selected{% endif %}>CA-Mobile</option>
+                              <option {% if record.facility === 'CBRC'%}selected{% endif %}>CBRC</option>
+                              <option {% if record.facility === 'CWRC'%}selected{% endif %}>CWRC</option>
+                              <option {% if record.facility === 'NB-Center'%}selected{% endif %}>NB-Center</option>
+                              <option {% if record.facility === 'NB-Mobile'%}selected{% endif %}>NB-Mobile</option>
+                            </select>                          </div>
+                            <div class="form-group col-md-6">
+                              <label for="zoneName">Zone name</label>
+                              <input name="zoneName" type="text" class="form-control" id="zoneName" placeholder="Zone name" value="{{ record.zoneName }}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="dateOfAdmission">Date of admission</label>
+                            <input type="text" class="form-control" id="dateOfAdmission" name="dateOfAdmission" value="{{ record.dateOfAdmission }}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="timeOfAdmission">Time of admission</label>
+                            <input name="timeOfAdmission" type="text" class="form-control" id="timeOfAdmission" value="{{ record.timeOfAdmission }}">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="food">Food</label>
+                            <input type="text" class="form-control" id="food" name="food" value="{{ record.food }}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="housing">Housing</label>
+                            <input name="housing" type="text" class="form-control" id="housing" value="{{ record.housing }}">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="medicalCare">Medical care</label>
+                          <input type="text" class="form-control" id="medicalCare" name="medicalCare" value="{{ record.medicalCare }}">
+                        </div>
+
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="proposedResolution">Proposed resolution</label>
+                            <select name="proposedResolution" class="form-control" id="proposedResolution">
+                                <option disabled selected>Please select</option>
+                              <option {% if record.proposedResolution === 'Release'%}selected{% endif %}>Release</option>
+                              <option {% if record.proposedResolution === 'Admit'%}selected{% endif %}>Admit</option>
+                              <option {% if record.proposedResolution === 'Transfer'%}selected{% endif %}>Transfer</option>
+                              <option {% if record.proposedResolution === 'Euthanize'%}selected{% endif %}>Euthanize</option>
+                              <option {% if record.proposedResolution === 'Other'%}selected{% endif %}>Other</option>
+                            </select>                          </div>
+                            <div class="form-group col-md-6">
+                              <label for="otherResolution">If other, please specify</label>
+                              <input name="otherResolution" type="text" class="form-control" id="otherResolution" value="{{ record.otherResolution }}">
+                            </div>
+                        </div>
+                        <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+
+
+                        <input class="btn btn-primary"  type="submit" name="submit" value="Update Case">
+                        <input class="btn btn-danger"  type="submit" name="submit" value="Delete Case">
+                      </form>
+
+
+                  </div>
+              </div>
+              <div class="tab-pane fade" id="nav-animal-facts" role="tabpanel" aria-labelledby="nav-animal-facts-tab">
+                  <div class="container wti-case-details-wrapper">
+                      <h2>Animal Facts</h2>
+
+                      <form class="" action="/admin/existing-case/{{ record._id }}" method="post">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="caseNumber">Case number</label>
+                            <input type="text" class="form-control" id="caseNumber" name="caseNumber" placeholder="Case number" value="{{ record.caseNumber }}" readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="dateAdded">Date added</label>
+                            <input name="dateAdded" type="text" class="form-control" id="dateAdded" placeholder="Date added" value="{{ record.dateAdded | asDayMonthYearTime }}" readonly>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="ageYears">Age (years)</label>
+                            <input type="text" class="form-control" id="ageYears" name="ageYears" value="{{ record.ageYears }}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="ageMonths">Age (months)</label>
+                            <input name="ageMonths" type="text" class="form-control" id="ageMonths" value="{{ record.ageMonths }}">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="stage">Stage</label>
+                            <select name="stage" class="form-control" id="stage">
+                                <option disabled selected>Please select</option>
+                              <option {% if record.stage === 'Infant'%}selected{% endif %}>Infant</option>
+                              <option {% if record.stage === 'Neonate'%}selected{% endif %}>Neonate</option>
+                              <option {% if record.stage === 'Subadult'%}selected{% endif %}>Subadult</option>
+                              <option {% if record.stage === 'Adult'%}selected{% endif %}>Adult</option>
+                            </select>                          </div>
+                            <div class="form-group col-md-6">
+                              <label for="weight">Weight</label>
+                              <input name="weight" type="text" class="form-control" id="weight" value="{{ record.weight }}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="length">Length</label>
+                            <input type="text" class="form-control" id="length" name="length" value="{{ record.length }}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="height">Height</label>
+                            <input name="height" type="text" class="form-control" id="height" value="{{ record.height }}">
+                          </div>
+                        </div>
+                        <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+
+                        <input class="btn btn-primary"  type="submit" name="submit" value="Update Case">
+                        <input class="btn btn-danger"  type="submit" name="submit" value="Delete Case">
+                      </form>
+
+
+                  </div>
+              </div>
+              <div class="tab-pane fade" id="nav-initial-examination" role="tabpanel" aria-labelledby="nav-initial-examination-tab">
+                  <div class="container wti-case-details-wrapper">
+                      <h2>Initial Examination</h2>
+
+                      <form class="" action="/admin/existing-case/{{ record._id }}" method="post">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="caseNumber">Case number</label>
+                            <input type="text" class="form-control" id="caseNumber" name="caseNumber" placeholder="Case number" value="{{ record.caseNumber }}" readonly>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="dateAdded">Date added</label>
+                            <input name="dateAdded" type="text" class="form-control" id="dateAdded" placeholder="Date added" value="{{ record.dateAdded | asDayMonthYearTime }}" readonly>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="dateOfExamination">Date of examination</label>
+                            <input type="text" class="form-control" id="dateOfExamination" name="dateOfExamination" value="{{ record.dateOfExamination }}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="modeOfRestraint">Mode of restraint</label>
+                            <select name="modeOfRestraint" class="form-control" id="modeOfRestraint">
+                                <option disabled selected>Please select</option>
+                              <option {% if record.modeOfRestraint === 'Physical'%}selected{% endif %}>Physical</option>
+                              <option {% if record.modeOfRestraint === 'Chemical'%}selected{% endif %}>Chemical</option>
+                              <option {% if record.modeOfRestraint === 'None'%}selected{% endif %}>None</option>
+                              <option {% if record.modeOfRestraint === 'Both'%}selected{% endif %}>Both</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="temperature">Temperature</label>
+                            <input type="text" class="form-control" id="temperature" name="temperature" value="{{ record.temperature }}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="heartRate">Heart rate</label>
+                            <input name="heartRate" type="text" class="form-control" id="heartRate" value="{{ record.heartRate }}">
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="pulse">Pulse</label>
+                            <input type="text" class="form-control" id="pulse" name="pulse" value="{{ record.pulse }}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="resperation">Resperation</label>
+                            <input name="resperation" type="text" class="form-control" id="resperation" value="{{ record.resperation }}">
+                          </div>
+                        </div>
+
+
+                        <div class="form-group">
+                          <label for="observationNotes">Observation notes</label>
+                          <textarea class="form-control" id="observationNotes" name="observationNotes" rows="6">{{ record.observationNotes }}</textarea>
+                        </div>
+                        <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+
+                        <input class="btn btn-primary"  type="submit" name="submit" value="Update Case">
+                        <input class="btn btn-danger"  type="submit" name="submit" value="Delete Case">
+                      </form>
+
+
+                  </div>
+              </div>
+              <div class="tab-pane fade" id="nav-outcome" role="tabpanel" aria-labelledby="nav-outcome-tab">
+                  <div class="container wti-case-details-wrapper">
+                      <h2>Outcome</h2>
+                      <p>It survived and lived a happy life :)</p>
+
+                      <form class="" action="/admin/existing-case/{{ record._id }}" method="post">
+                        <div class="form-group">
+                          <label for="releaseNotes">Release notes</label>
+                          <textarea class="form-control" id="releaseNotes" name="releaseNotes" rows="6">{{ record.releaseNotes }}</textarea>
+                        </div>
+
+                        <input type="hidden" name="_csrf" value="{{ _csrf }}">
+                        <input class="btn btn-primary"  type="submit" name="submit" value="Update Case">
+                        <input class="btn btn-danger"  type="submit" name="submit" value="Delete Case">
+                      </form>
+
+
+                  </div>
+              </div>
+
+            </div>
+        </div>
+
+
+        {% endblock %}
+
+
+
+</html>

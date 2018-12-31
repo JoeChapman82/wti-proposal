@@ -1,0 +1,59 @@
+{% extends "nunjucks/templates/main.njk" %}
+
+    {% block content %}
+
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fas fa-table"></i>
+        Vetinary Records
+</div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered wti-reducing-table" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th class="wti-hidden-on-mobile">Group</th>
+                <th>Identity</th>
+                <th>Date added</th>
+                <th class="wti-hidden-on-mobile">Class</th>
+                <th>Place of rescue</th>
+                <th>Zone</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                  <th class="wti-hidden-on-mobile">Group</th>
+                  <th>Identity</th>
+                  <th>Date added</th>
+                  <th class="wti-hidden-on-mobile">Class</th>
+                  <th>Place of rescue</th>
+                  <th>Zone</th>
+              </tr>
+            </tfoot>
+            <tbody>
+                {% for record in records %}
+                <tr class="wti-clickable-table">
+                <td class="wti-hidden-on-mobile">{{ record.groupName }}</td>
+                <td>{{ record.identityName }}
+                    <a href="/admin/existing-case/{{ record._id }}"></a>
+                </td>
+                <td>{{ record.dateAdded | asDayMonthYearTime }}</td>
+                <td class="wti-hidden-on-mobile">{{ record.class }}</td>
+                <td>{{ record.placeOfRescue }}</td>
+                <td>{{ record.zoneName }}</td>
+              </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer small text-muted">Last updated: {{ lastUpdatedAt | asDayMonthYearTime }}</div>
+    </div>
+
+
+        {% endblock %}
+
+
+
+</html>

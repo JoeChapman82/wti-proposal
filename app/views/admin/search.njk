@@ -1,0 +1,117 @@
+{% extends "nunjucks/templates/main.njk" %}
+
+    {% block content %}
+
+    <div class="container">
+        <h1>Search for cases</h1>
+        <p class="lead">Provide as many criteria as required Results appear below.</p>
+
+        <form class="" action="/admin/search" method="post">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="caseNumber">Case number</label>
+              <input type="text" class="form-control" id="caseNumber" name="caseNumber" value="">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="dateAdded">Date added</label>
+              <input name="dateAdded" type="text" class="form-control" id="dateAdded" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="placeOfRescue">Place of rescue</label>
+            <input type="text" class="form-control" id="placeOfRescue" name="placeOfRescue" value="">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="groupName">Group name</label>
+              <input type="text" class="form-control" id="groupName" name="groupName" placeholder="Group name" value="">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="identityName">Identity name</label>
+              <input name="identityName" type="text" class="form-control" id="identityName" value="">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="class">Class</label>
+              <input type="text" class="form-control" id="class" name="class" value="">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="zoneName">Zone name</label>
+              <input name="zoneName" type="text" class="form-control" id="zoneName" value="">
+            </div>
+          </div>
+
+          <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+          <input class="btn btn-primary"  type="submit" name="submit" value="Search">
+        </form>
+
+        {% if noRecordsFound %}
+            <br />
+            <h1>No records found</h1>
+        {% endif %}
+
+
+        {% if records %}
+        <br />
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Search results
+    </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered wti-reducing-table" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th class="wti-hidden-on-mobile">Group</th>
+                    <th>Identity</th>
+                    <th>Date added</th>
+                    <th class="wti-hidden-on-mobile">Class</th>
+                    <th>Place of rescue</th>
+                    <th>Zone</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                      <th class="wti-hidden-on-mobile">Group</th>
+                      <th>Identity</th>
+                      <th>Date added</th>
+                      <th class="wti-hidden-on-mobile">Class</th>
+                      <th>Place of rescue</th>
+                      <th>Zone</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                    {% for record in records %}
+                    <tr class="wti-clickable-table">
+                    <td class="wti-hidden-on-mobile">{{ record.groupName }}</td>
+                    <td>{{ record.identityName }}
+                        <a href="/admin/existing-case/{{ record._id }}"></a>
+                    </td>
+                    <td>{{ record.dateAdded | asDayMonthYearTime }}</td>
+                    <td class="wti-hidden-on-mobile">{{ record.class }}</td>
+                    <td>{{ record.placeOfRescue }}</td>
+                    <td>{{ record.zoneName }}</td>
+                  </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted">Last updated: {{ lastUpdatedAt | asDayMonthYearTime }}</div>
+        </div>
+        {% endif %}
+
+
+
+    </div>
+
+
+
+        {% endblock %}
+
+
+
+</html>

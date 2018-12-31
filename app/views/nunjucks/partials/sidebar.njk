@@ -1,0 +1,50 @@
+<!-- Sidebar -->
+<ul class="sidebar navbar-nav">
+  <li class="nav-item{% if activeView === 'dashboard' %} active{% endif %}">
+    <a class="nav-link" href="/admin/dashboard">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Dashboard</span>
+    </a>
+  </li>
+  <li class="nav-item{% if activeView === 'new-case' %} active{% endif %}">
+    <a class="nav-link" href="/admin/new-case">
+      <i class="fas fa-fw fa-paw"></i>
+      <span>New case</span></a>
+  </li>
+  <li class="nav-item{% if activeView === 'bulk-upload' %} active{% endif %}">
+    <a class="nav-link" href="/admin/bulk-upload">
+      <i class="fas fa-fw fa-file-upload"></i>
+      <span>Bulk upload</span></a>
+  </li>
+  <li class="nav-item{% if activeView === 'existing-cases' %} active{% endif %}">
+    <a class="nav-link" href="/admin/existing-cases">
+      <i class="fas fa-fw fa-book-open"></i>
+      <span>Existing cases</span></a>
+  </li>
+  <li class="nav-item{% if activeView === 'vetinary-records' %} active{% endif %}">
+    <a class="nav-link" href="/admin/vetinary-records">
+      <i class="fas fa-fw fa-user-md"></i>
+      <span>Vetinary records</span></a>
+  </li>
+  <li class="nav-item{% if activeView === 'husbandry-records' %} active{% endif %}">
+    <a class="nav-link" href="/admin/husbandry-records">
+      <i class="fas fa-fw fa-feather"></i>
+      <span>Husbandry records</span></a>
+  </li>
+  <li class="nav-item{% if activeView === 'invite-user' %} active{% endif %}">
+    <a class="nav-link" href="/admin/invite-user">
+      <i class="fas fa-fw fa-user"></i>
+      <span>New user</span></a>
+  </li>
+  <li class="nav-item{% if activeView === 'view-users' %} active{% endif %}">
+    <a class="nav-link" href="/admin/view-users">
+      <i class="fas fa-fw fa-users"></i>
+      <span>View users</span></a>
+  </li>
+  <li class="nav-item{% if activeView === 'search' %} active{% endif %}">
+    <a class="nav-link" href="/admin/search">
+      <i class="fas fa-fw fa-search"></i>
+      <span>Search</span></a>
+  </li>
+
+</ul>

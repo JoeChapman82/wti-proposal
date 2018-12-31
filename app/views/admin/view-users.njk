@@ -1,0 +1,44 @@
+{% extends "nunjucks/templates/main.njk" %}
+
+    {% block content %}
+
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fas fa-table"></i>
+        Current users
+</div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered wti-reducing-table" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                  <th>Username</th>
+                  <th>Role</th>
+              </tr>
+            </tfoot>
+            <tbody>
+                {% for user in users %}
+                <td>{{ user.username }}</td>
+                <td>{{ user.role }}</td>
+              </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer small text-muted">Last updated: {{ lastUpdatedAt | asDayMonthYearTime }}</div>
+    </div>
+
+
+        {% endblock %}
+
+
+
+</html>

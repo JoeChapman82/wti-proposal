@@ -1,0 +1,51 @@
+{
+  "name": "wildlife-trust-server",
+  "version": "0.0.1",
+  "description": "recruitment client for burbank hack",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "devstart": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
+  },
+  "keywords": [
+    "wildlife",
+    "trust",
+    "server"
+  ],
+  "author": "Joe Chapman",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
+    "csvtojson": "^2.0.8",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.1",
+    "multer": "^1.4.1",
+    "nunjucks": "^3.1.6",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "require-dir": "^1.2.0",
+    "serve-favicon": "^2.5.0",
+    "stream-buffers": "^3.0.2",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-flatten": "^0.4.0",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1",
+    "pump": "^3.0.0",
+    "run-sequence": "^2.2.1"
+  }
+}

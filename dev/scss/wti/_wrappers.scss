@@ -1,0 +1,49 @@
+.wti-forgot-password-wrapper {
+    margin-top: 2rem;
+}
+
+.wti-form-wrapper {
+    padding: 2rem 3rem;
+}
+
+.wti-small-margin-bottom-wrapper {
+    margin-bottom: 1rem;
+}
+
+.wti-error-message-wrapper {
+    margin-top: -.5rem;
+}
+
+.wti-file-input-wrapper {
+    padding: 2rem;
+    border: 1px solid rgba(188, 188, 188, 1);
+    width: 50%;
+    margin-bottom: 2rem;
+}
+
+.wti-file-input-button-wrapper {
+    width: 50%;
+}
+
+.wti-case-details-wrapper {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: rgba(242, 242, 242, 1);
+    border: 1px solid lighten(#212528, 10%);
+}
+
+@media screen and(max-width: 800px) {
+    .wti-form-wrapper {
+        padding: .5rem 1rem;
+    }
+
+    .wti-file-input-wrapper {
+        padding: 2rem;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .wti-file-input-button-wrapper {
+        width: 100%;
+    }
+}

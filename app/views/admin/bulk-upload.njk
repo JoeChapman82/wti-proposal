@@ -1,0 +1,46 @@
+{% extends "nunjucks/templates/main.njk" %}
+
+    {% block page_title %}Create case{% endblock %}
+
+    {% block content %}
+
+        <div class="container">
+            {% if fileReceived %}
+            <div class="alert alert-success">
+              <span><a href="#" class="alert-link">File uploaded successfully</a>.</span>
+            </div>
+            {% endif %}
+            {% if errors %}
+                {% for key, value in errors %}
+                    <div class="alert alert-danger">
+                      <span><a href="#{{ key }}" class="alert-link">{{ value.msg }}</a>.</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="wti-small-margin-bottom-wrapper">
+                <h1 class="">Upload multiple records</h1>
+                <p class="lead">Select a csv file to upload to the database</p>
+            </div>
+            <form id="uploadForm" enctype="multipart/form-data" class="form" action="/admin/bulk-upload?_csrf={{ _csrf }}" method="post">
+                <div class="input-group wti-file-input-wrapper">
+                    <div class="form-group">
+                      <label for="exampleFormControlFile1">Csv file containing new records</label>
+                      <input type="file" class="form-control-file" id="uploadFile" name="uploadFile">
+                    </div>
+                </div>
+                <input type="hidden" name="_csrf" value="{{ _csrf }}">
+                <div class="wti-file-input-button-wrapper">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Upload File</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+        {% endblock %}
+
+
+
+</html>

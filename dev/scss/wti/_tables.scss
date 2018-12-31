@@ -1,0 +1,29 @@
+.wti-clickable-table:hover {
+    cursor: pointer;
+    background-color: rgba(232, 232, 232, 1);
+}
+
+@media screen and(max-width: 800px) {
+    .wti-reducing-table {
+        font-size: 80%;
+    }
+
+    .wti-reducing-table td {
+        padding: 0.5rem;
+    }
+}
+
+@media screen and(max-width: 600px) {
+    .wti-reducing-table {
+        font-size: 70%;
+    }
+
+    .wti-reducing-table td {
+        padding: 0.2rem;
+    }
+
+    .wti-hidden-on-mobile {
+        display: none;
+        visibility: hidden;
+    }
+}
