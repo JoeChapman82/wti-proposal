@@ -1,7 +1,7 @@
 if(document.querySelector('.wti-clickable-table')) {
     document.querySelectorAll('tr').forEach(function(row, index) {
         var tableLength = document.querySelectorAll('tr').length;
-        if(index !== 0 && index !== tableLength -1) {
+        if(index !== tableLength -1) {
             row.addEventListener('click', selectRecordById);
         }
     });
