@@ -1,1 +1,1 @@
-function selectRecordById(e){this.childNodes[3].childNodes[1].click()}document.querySelector(".wti-clickable-table")&&document.querySelectorAll("tr").forEach(function(e,c){c!==document.querySelectorAll("tr").length-1&&e.addEventListener("click",selectRecordById)});
+function selectRecordById(e){this.childNodes[3].childNodes[1].click()}document.querySelector(".wti-clickable-table")&&document.querySelectorAll("tr").forEach(function(e,c){e.addEventListener("click",selectRecordById)});
