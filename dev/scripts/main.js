@@ -7,3 +7,13 @@ if(document.querySelector('.wti-clickable-table')) {
 function selectRecordById(e) {
     this.childNodes[3].childNodes[1].click();
 }
+
+hideSidebar();
+
+function hideSidebar() {
+    if($(window).width() < 600) {
+        document.querySelectorAll('.sidebar').forEach(function(element) {
+            element.classList.add('toggled');
+        });
+    }
+}
